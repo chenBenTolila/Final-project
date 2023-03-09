@@ -47,6 +47,7 @@ App = {
     loadAccount: async () => {
       // Set the current blockchain account
       App.account = web3.eth.accounts[0]
+      web3.eth.defaultAccount=web3.eth.accounts[0]
       console.log(App.account)
     },
   
@@ -112,12 +113,18 @@ App = {
       }
     },
   
-    // createTask: async () => {
-    //   App.setLoading(true)
-    //   const content = $('#newTask').val()
-    //   await App.todoList.createTask(content)
-    //   window.location.reload()
-    // },
+    createTask: async () => {
+      App.setLoading(true)
+      const content = $('#newTask').val()
+      console.log(content)
+      console.log(App.account)
+      const res = await App.todoList.createTask(content)
+      console.log("done creating task")
+      console.log(res)
+      window.location.reload()
+
+      
+    },
   
     // toggleCompleted: async (e) => {
     //   App.setLoading(true)
